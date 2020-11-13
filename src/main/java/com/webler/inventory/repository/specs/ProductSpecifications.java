@@ -19,23 +19,23 @@ public class ProductSpecifications {
     }
 
     private static Specification<Product> getProductsByNameSpec(String name) {
-        return (Specification<Product>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("name"), "%" + name + "%");
+        return (Specification<Product>) (root, query, cb) -> cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
     }
 
     private static Specification<Product> getProductsByCategorySpec(String category) {
-        return (Specification<Product>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("category").get("name"), "%" + category + "%");
+        return (Specification<Product>) (root, query, cb) -> cb.like(cb.lower(root.get("category").get("name")), "%" + category.toLowerCase() + "%");
     }
 
     private static Specification<Product> getProductsByBrandSpec(String brand) {
-        return (Specification<Product>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("brand").get("name"), "%" + brand + "%");
+        return (Specification<Product>) (root, query, cb) -> cb.like(cb.lower(root.get("brand").get("name")), "%" + brand.toLowerCase() + "%");
     }
 
     private static Specification<Product> getProductsByManufacturerSpec(String manufacturer) {
-        return (Specification<Product>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("manufacturer").get("name"), "%" + manufacturer + "%");
+        return (Specification<Product>) (root, query, cb) -> cb.like(cb.lower(root.get("manufacturer").get("name")), "%" + manufacturer.toLowerCase() + "%");
     }
 
     private static Specification<Product> getProductsBySupplierSpec(String supplier) {
-        return (Specification<Product>) (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("supplier").get("name"), "%" + supplier + "%");
+        return (Specification<Product>) (root, query, cb) -> cb.like(cb.lower(root.get("supplier").get("name")), "%" + supplier.toLowerCase() + "%");
     }
 
     private static Specification<Product> getProductsWithPriceGraterThan(Integer price) {

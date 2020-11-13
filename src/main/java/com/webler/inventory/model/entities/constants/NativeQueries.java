@@ -5,19 +5,20 @@ public class NativeQueries {
     public static final String FIND_LOWEST_PRICE_IN_CATEGORY =
             "SELECT " +
             "  p.id, " +
-            "  t.category_name name, " +
+            "  cc.name name, " +
             "  p.name name2,  " +
             "  p.price value " +
             "FROM product p " +
             "JOIN " +
             "( " +
-            "  SELECT c.id category_id, c.name category_name, MIN(price) price " +
+            "  SELECT pr.category_id category_id, MIN(price) price " +
             "  FROM product pr " +
             "  INNER JOIN category c ON pr.category_id = c.id " +
             "  GROUP BY pr.category_id " +
             ") t " +
             "ON p.category_id = t.category_id " +
-            "AND p.price = t.price";
+            "AND p.price = t.price " +
+            "JOIN category cc ON p.category_id = cc.id";
 
     public static final String FIND_BIGGEST_PRICE_DROPS =
             "SELECT p.id, p.name, min_max_date_prices.min_date_price value, min_max_date_prices.max_date_price value2 " +

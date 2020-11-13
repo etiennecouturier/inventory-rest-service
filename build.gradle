@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.0"
 }
 
 group = 'com.webler'
@@ -18,7 +19,7 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 	compileOnly 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
-	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'org.hsqldb:hsqldb:2.4.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
